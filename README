@@ -6,11 +6,32 @@ This plugin enhances ActionMailer to support the :cache method, which behaves li
 :test, except that the deliveries are marshalled to a temporary cache file, thus,
 making them available to other processes.
 
+
+About this fork
+===============
+
+This fork includes enhancements from a couple other forks. It includes an
+enhancement from liangzan's fork to support email_spec compatibility:
+
+    http://github.com/liangzan/action_mailer_cache_delivery
+
+as well as couple additions from grimsock's fork to return an empty list
+whenever the cache file is nonexistent or empty, and to only load this module
+when the environment is 'cucumber' or 'selenium':
+
+    http://github.com/grimsock/action_mailer_cache_delivery
+
+None of the existing forks of this project appear to handle the case where the
+tmp/cache directory doesn't exist. This results in failures when trying to read
+or write the cache file. This fork remedies that.
+
+
 Installation
 ============
 
   #$ cd RAILS_ROOT
-  #$ ./script/plugin install git://github.com/ngty/action_mailer_cache_delivery.git
+  #$ ./script/plugin install git://github.com/wapcaplet/action_mailer_cache_delivery.git
+
 
 Example
 =======
