@@ -1,3 +1,5 @@
+require 'fileutils'
+
 ActionMailer::Base.class_eval do
 
   DELIVERIES_CACHE_PATH =
@@ -10,7 +12,7 @@ ActionMailer::Base.class_eval do
 
     # Create the cache directory if it doesn't exist
     cache_dir = File.dirname(DELIVERIES_CACHE_PATH)
-    Dir.mkdir_p(cache_dir) unless File.directory?(cache_dir)
+    FileUtils.mkdir_p(cache_dir) unless File.directory?(cache_dir)
 
     File.open(DELIVERIES_CACHE_PATH,'w') do |f|
       Marshal.dump(deliveries, f)
@@ -36,7 +38,7 @@ ActionMailer::Base.class_eval do
 
     # Create the cache directory if it doesn't exist
     cache_dir = File.dirname(DELIVERIES_CACHE_PATH)
-    Dir.mkdir_p(cache_dir) unless File.directory?(cache_dir)
+    FileUtils.mkdir_p(cache_dir) unless File.directory?(cache_dir)
 
     # Marshal the empty list of deliveries
     File.open(DELIVERIES_CACHE_PATH, 'w') do |f|
